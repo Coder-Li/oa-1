@@ -1,0 +1,104 @@
+<% include ./layout %>
+    <div>
+        <table border="1" id="department">
+            <tr>
+                <th>部门名称</th>
+                <th>上级部门名称</th>
+                <th>职能说明</th>
+                <th>相关操作</th>
+            </tr>
+            <!--<tr>
+                <td><%= departments[0].name %></td>
+                <td><%= departments[0].topname %></td>
+                <td><%= departments[0].description %></td>
+                <td><%= departments.length %></td>
+            </tr>
+            <tr>
+                <td><%= departments[1].name %></td>
+                <td><%= departments[1].topname %></td>
+                <td><%= departments[1].description %></td>
+                <td><%= departments.length %></td>
+            </tr>-->
+            <% for(var i = 0;i < departments.length; i++ ){%>
+            <tr>
+                <td><a href="/department/<%= departments[i]._id %>"><%= departments[i].name %></a></td>
+                <td><%= departments[i].topname %></td>
+                <td><%= departments[i].description %></td>
+                <td><a href="/department/edit/<%= departments[i]._id %>">修改</a><span> | </span><a href="/department/del/<%= departments[i]._id %>">删除</a></%>/td>
+            </tr>
+            <% } %> 
+        </table>
+        <!--a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册-->
+        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#addDepartment">新建部门</a>
+    </div>
+
+<div id="addDepartment" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/department" method="POST">
+                <div class="modal-header">添加部门</div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="topname">上级部门</label>
+                        <!--<input name="depart[topname]" type="text" id="topname" class="form-control">-->
+                        <select name="depart[topname]" id="topname">
+                            <option value="总部">总部</option>
+                            <% for (var j = 0;j < departments.length; j++){%>
+                                <option value=<%= departments[j].name %>><%= departments[j].name %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">部门名称</label>
+                        <input name="depart[name]" type="text" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">职能说明</label>
+                        <!--<input name="depart[description]" type="textarea" id="description" class="form-control">-->
+                        <textarea name="depart[description]" id="description" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-default" type="submit">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!--#signupModal.modal.fade
+  .modal-dialog
+    .modal-content
+      form(method="POST", action="/user/signup")
+        .modal-header 注册
+        .modal-body
+          .form-group
+            label(for="signupName") 用户名
+            input#signupName.form-control(name="user[name]", type="text")
+          .form-group
+            label(for="signupPassword") 密码
+            input#signupPassword.form-control(name="user[password]", type="password")
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+          button.btn.btn-default(type="submit") 提交-->
+<script type="text/javascript">
+    function altRows(id){
+        if(document.getElementsByTagName){  
+            var table = document.getElementById(id);  
+            var rows = table.getElementsByTagName("tr"); 
+            
+            for(i = 0; i < rows.length; i++){          
+                if(i % 2 == 0){
+                    rows[i].className = "evenrowcolor";
+                }else{
+                    rows[i].className = "oddrowcolor";
+                }      
+            }
+        }
+    }
+    $(document).ready(function(){
+        altRows('department');
+    })
+</script>
+
+<% include ../includes/foot %>
