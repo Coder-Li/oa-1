@@ -24,7 +24,7 @@ exports.getDate = function(req, res, next){
                 if(err) console.log(err);
                 var departs = [];
                 departments.forEach(function(element) {
-                    if(element.topname == department.name){
+                    if(element.topname == department._id){
                         departs.push(element);
                     }
                 }, this);
