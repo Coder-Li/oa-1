@@ -7,8 +7,8 @@ var ObjectId = Schema.Types.ObjectId;
 var DepartmentSchema = new Schema({
     name: String,
     topname: {
-        type: String,
-        default: '总部'
+        type: ObjectId,
+        ref: 'Department'
     },
     description: String,
     downStreamDepartment: [{

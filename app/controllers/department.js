@@ -1,4 +1,5 @@
 var Department = require('../models/department');
+var _ = require('underscore');
 
 exports.show = function (req, res){
     var departs = req.body.departs;
@@ -43,12 +44,26 @@ exports.getDate = function(req, res, next){
 
 exports.save = function(req, res){
    var _depart = req.body.depart;
-   console.log(_depart);
+   
 
-   if(_depart.id){
+   if(_depart._id){
         //修改数据
+        console.log('修改');
+        Department.findById(_depart._id, function(err, department){
+            if(err){
+                console.log(err);
+            }
+
+            var departmentObj = _.extend(department, _depart);
+            Department.update({_id: department._id}, {$set:{name:departmentObj.name, topname:departmentObj.topname, description:departmentObj.description}},function(err, departmentObj){
+                if(err) console.log(err);
+                res.redirect('/department');
+            })
+        })
+
    }else{
         //新增数据
+        console.log('添加');
         var department = new Department(_depart);
         department.save(function(err, department){
             if(err){
@@ -72,5 +87,17 @@ exports.edit = function(req, res){
         })
     }else{
         res.redirect('/department')
+    }
+}
+
+exports.del = function(req, res){
+    var id = req.params.id;
+    if(id){
+        Department.remove({_id: id}, function(err, department){
+            if(err)  console.log(err);
+            res.redirect('/department');
+        })
+    }else{
+        res.redirect('/department');
     }
 }

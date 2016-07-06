@@ -1,6 +1,6 @@
 <% include ./layout %>
     <div id="departmentEditForm">
-        <form action="">
+        <form action="/department" method="POST">
             <div class="form-group">
                 <input id="departmentId" type="hidden" name="depart[_id]" value="<%= department._id %>">
             </div>
@@ -10,7 +10,7 @@
             </div>
             <div class="form-group">
                 <label for="departmentTopName">上级部门</label>
-                <input id="departmentTopName" type="text" name="depart[topname]" value="<%= department.topname %>">
+                <input disabled="disabled" id="departmentTopName" type="text" name="depart[topname]" value="<%= department.topname %>">
             </div>
             <div class="form-group">
                 <label for="departmentDescription">部门描述</label>
