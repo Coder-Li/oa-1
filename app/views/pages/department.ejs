@@ -4,7 +4,7 @@
             <tr>
                 <th>部门名称</th>
                 <th>上级部门名称</th>
-                <th>职能说明</th>
+                <th>部门描述</th>
                 <th>相关操作</th>
             </tr>
             <!--<tr>
@@ -20,6 +20,9 @@
                 <td><%= departments.length %></td>
             </tr>-->
             <% for(var i = 0;i < departments.length; i++ ){%>
+            <% if(departments[i].name == '请添加部门') {%>
+                <% continue %>
+            <% } %>
             <tr>
                 <td><a href="/department/<%= departments[i]._id %>"><%= departments[i].name %></a></td>
                 <td><%= departments[i].topname %></td>
@@ -44,6 +47,9 @@
                         <select name="depart[topname]" id="topname">
                             <option value="总部">总部</option>
                             <% for (var j = 0;j < departments.length; j++){%>
+                            <% if(departments[j].name == '请添加部门') {%>
+                                <% continue %>
+                            <% } %>
                                 <option value=<%= departments[j].name %>><%= departments[j].name %></option>
                             <% } %>
                         </select>
@@ -53,7 +59,7 @@
                         <input name="depart[name]" type="text" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="description">职能说明</label>
+                        <label for="description">部门描述</label>
                         <!--<input name="depart[description]" type="textarea" id="description" class="form-control">-->
                         <textarea name="depart[description]" id="description" cols="30" rows="10"></textarea>
                     </div>

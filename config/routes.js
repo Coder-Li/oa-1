@@ -18,4 +18,6 @@ module.exports = function (app){
     app.get('/department', Department.getDate, Department.show);
     app.post('/department', Department.save);
     app.get('/department/:id', Department.getDate, Department.show);
+    app.get('/department/edit/:id', Department.edit);
+    app.get('/department/del/:id', Department.edit)
 }

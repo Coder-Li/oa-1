@@ -1,0 +1,22 @@
+<% include ./layout %>
+    <div id="departmentEditForm">
+        <form action="">
+            <div class="form-group">
+                <input id="departmentId" type="hidden" name="depart[_id]" value="<%= department._id %>">
+            </div>
+            <div class="form-group">
+                <label for="departmentName">部门名称</label>
+                <input id="departmentName" type="text" name="depart[name]" value="<%= department.name %>">
+            </div>
+            <div class="form-group">
+                <label for="departmentTopName">上级部门</label>
+                <input id="departmentTopName" type="text" name="depart[topname]" value="<%= department.topname %>">
+            </div>
+            <div class="form-group">
+                <label for="departmentDescription">部门描述</label>
+                <input id="departmentDescription" type="text" name="depart[description]" value="<%= department.description %>">
+            </div>
+            <button class="btn btn-default" type="submit">确认修改</button>
+        </form>
+    </div>
+<% include ../includes/foot %>
