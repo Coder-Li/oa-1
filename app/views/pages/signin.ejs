@@ -9,12 +9,12 @@
   </head>
 <body>
     <div class="container">
-        <form action="" class="form-signin login-form">
+        <form method="POST" action="/user/signin" class="form-signin login-form">
             <h2 class="form-signin-heading">请登录</h2>
-            <label for="" class="sr-only">Email address</label>
-            <input type="text" class="form-control" placeholder="Email address" required autofocus>
-            <label for="" class="sr-only">Password</label>
-            <input type="password" class="form-control" placeholder="Password" required>
+            <label for="signinName" class="sr-only">账号</label>
+            <input id="signinName" name="user[name]" type="text" class="form-control" placeholder="账号" required autofocus>
+            <label for="signinPassword" class="sr-only">密码</label>
+            <input id="signinPassword" name="user[password]" type="password" class="form-control" placeholder="密码" required>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me

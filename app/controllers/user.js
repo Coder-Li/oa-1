@@ -10,7 +10,7 @@ exports.signup = function (req, res) {
     var _user = req.body.user;
     var userToSave = new User(_user);
     // req.param('user');    // not params     url>body>query
-    // console.log(_user);
+    console.log(_user);
     //用户名校验
     User.findOne({ name: _user.name }, function (err, user) {
         if (err) {
@@ -46,7 +46,8 @@ exports.signin = function (req, res) {
     var _user = req.body.user;
     var name = _user.name;
     var password = _user.password;
-
+    // console.log(_user);
+    
     User.findOne({ name: name }, function (err, user) {
         if (err) {
             console.log(err);
@@ -82,6 +83,7 @@ exports.logout = function (req, res) {
 
 // userlist page
 exports.list = function (req, res) {
+    console.log('1');
     User.fetch(function (err, users) {
         if (err) {
             console.log(err);

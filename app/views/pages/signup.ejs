@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <% include ../includes/head %>
+  </head>
+<body>
+    <div class="container">
+        <form method="POST" action="/user/signup" class="form-signin login-form">
+            <h2 class="form-signin-heading">请注册</h2>
+            <label for="signupName" class="sr-only">账号</label>
+            <input id="signupName" name="user[name]" type="text" class="form-control" placeholder="账号" required autofocus>
+            <label for="signupPassword" class="sr-only">密码</label>
+            <input id="signupPassword" name="user[password]" type="password" class="form-control" placeholder="密码" required>
+            <button class="ben ben-lg btn-primart ben-block" type="submit">提交</button>
+        </form>
+    </div>
+</body>
+</html>

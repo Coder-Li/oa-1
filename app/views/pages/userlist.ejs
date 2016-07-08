@@ -1,3 +1,21 @@
 <% include ./layout %>
-    <div><h1>用户列表页面 </h1></div>
+    <div>
+        <table border="1" id="userlist">
+            <tr>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr>
+            <% for(var i = 0;i < users.length; i++ ){%>
+            <tr>
+                <td><%= users[i].name %></td>
+                <td><%= users[i].password %></td>
+                <td><a href="/user/edit/<%= users[i]._id %>">修改</a><span> | </span><a href="/user/del/<%= users[i]._id %>">删除</a></%>/td>
+            </tr>
+            <% } %> 
+        </table>
+        <!--a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册-->
+        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#addUser">新建用户</a>
+    </div>
+
 <% include ../includes/foot %>

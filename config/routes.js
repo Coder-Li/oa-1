@@ -32,5 +32,6 @@ module.exports = function (app){
     app.get('/logout', User.logout);
     app.post('/user/signup', User.signup);
     app.post('/user/signin', User.signin);
+    app.get('/userlist', User.list);
 
 }
