@@ -25,14 +25,19 @@
             <% } %>
             <tr>
                 <td><a href="/department/<%= departments[i]._id %>"><%= departments[i].name %></a></td>
-                <% if(departments[i].topname == '007'){ %>
-                <td>总部</td>
-                    <% }else{ %>
-                        <% for(var k = 0;k < departments.length; k++){ %>
-                        <% if(departments[k]._id == departments[i].topname){ %>
-                            <td><%= departments[k].name %></td>
-                        <% }} %>
-                    <% }%>
+                <td>
+                  <% if(top){ %>
+                       <%= top %>
+                 <% }else{ %>
+                      <% if(departments[i].topname == '007'){ %>
+                           总部
+                      <% }else{ %>
+                           <% for(var k = 0;k < departments.length; k++){ %>
+                               <% if(departments[k]._id == departments[i].topname){ %>
+                                      <%= departments[k].name %>
+                                <% }} %>
+                             <% }}%>
+                </td>
                 <td><%= departments[i].description %></td>
                 <td><a href="/department/edit/<%= departments[i]._id %>">修改</a><span> | </span><a href="/department/del/<%= departments[i]._id %>">删除</a></%>/td>
             </tr>

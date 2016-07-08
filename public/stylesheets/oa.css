@@ -125,3 +125,8 @@ div#sidebar{
   line-height:25px;
   font-size: 2em;
 }
+
+.login-form{
+  margin-left:35%;
+  width: 30%;
+}

@@ -2,21 +2,36 @@ var Department = require('../models/department');
 var _ = require('underscore');
 
 exports.show = function (req, res){
+    var id = req.params.id || undefined;
     var departs = req.body.departs;
     if(departs.length == 0){
         departs = [{name:'请添加部门'},{name:'请添加部门'}];
     }else if(departs.length == 1){
         departs.push({name:'请添加部门'});
     }
-    res.render('department',{
-    title: '部门',
-    departments: departs
-  })
+    if(id != undefined){
+        Department.findById(id, function(err, department){
+            if(err) console.log(err)
+
+            var top = department.name;
+            res.render('department', {
+                title: '部门',
+                departments: departs,
+                top : top
+            })
+        })
+    }else{
+        res.render('department',{
+        title: '部门',
+        departments: departs,
+        top: undefined
+        })
+    }
 }
 
 exports.getDate = function(req, res, next){
-    var id = req.params.id || 'Undefined';
-    if(id != 'Undefined'){
+    var id = req.params.id || undefined;
+    if(id != undefined){
         Department.findById(id, function(err, department){
             if(err) console.log(err);
 

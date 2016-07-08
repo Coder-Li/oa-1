@@ -4,11 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
+var mongoStore = require('connect-mongo')(session);
 var port = process.env.PORT || 3000;
 // mongoose
 var mongoose = require('mongoose');
-// var session = require('express-session');
 var dbUrl = 'mongodb://127.0.0.1/Oa';
 mongoose.connect(dbUrl);
 
@@ -26,15 +27,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(session({
-//   secret : 'test',
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new mongoStore({
-//     url: dbUrl,
-//     collection: 'sessions'
-//   })
-// }));
+app.use(session({
+  secret : 'oaSys',
+  resave: false,
+  saveUninitialized: true,
+  store: new mongoStore({
+    url: dbUrl,
+    collection: 'sessions'
+  })
+}));
 
 app.locals.moment = require('moment');
 
